@@ -15,8 +15,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from bincardcreation.views import Myview
+from . import views
+#from bincardcreation.views import Myview,materilaserializers
 
 urlpatterns = [
-    path('',Myview.as_view()),
+    path('',views.bincardtable.as_view()),
+    path('receipt/<int:receipt_no>',views.materilaserializers.as_view()),
+
 ]
