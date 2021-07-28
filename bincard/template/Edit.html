@@ -1,0 +1,54 @@
+<head>
+  <title>Edit The Record</title>
+</head>
+<body>
+  <center>
+    <h1> Update The Record</h1>
+    <hr/>
+    <form method="POST" action="/update/{{ Material.receipt_no }}">
+       {% csrf_token %}
+    <table border="3">
+      <tr>
+        <td>Date</td>
+        <td><input type="date" name="date"value="{{ Material.date }}"/></td>
+      </tr>
+      <tr>
+        <td>Document Number</td>
+        <td><input type="number" name="doc_no"value="{{ Material.doc_no }}"/></td>
+      </tr>
+      <tr>
+        <td>Received From</td>
+        <td><input type="text" name="received_from" value="{{ Material.received_from }}"/></td>
+      </tr>
+      <tr>
+        <td>Receipt Number</td>
+        <td><input type="number" name="receipt_no" value="{{ Material.receipt_no }}"/></td>
+      </tr>
+      <tr>
+        <td>Issue</td>
+        <td><input type="text" name="issue"value="{{ Material.issue }}"/></td>
+      </tr>
+      <tr>
+        <td>Balance</td>
+        <td><input type="number" name="balance" value="{{ Material.balance }}"/></td>
+      </tr>
+      <tr>
+        <td>Verification date</td>
+        <td><input type="date" name="verification_date"value="{{ Material.verification_date }}"/></td>
+      </tr>
+      <tr>
+        <td>Verified by</td>
+        <td><input type="text" name="verified_by" value="{{ Material.verified_by }}"/></td>
+      </tr>
+    </table>
+    <input type="submit" value="update"/> <a href="{% url 'display' %}"> Back to homepage</a>
+    {% if messages %}
+    {% for sms in messages %} 
+    <h3 style="color: rgb(32, 143, 240);">{{sms}}</h3>
+    {% endfor %}
+    {% endif %}
+    
+    </form>
+    
+  </center>
+</body>

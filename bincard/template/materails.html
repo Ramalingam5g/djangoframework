@@ -1,0 +1,50 @@
+{% load static %}
+{% block myblock %}
+               
+        <div class="col-md-6">
+            <form action="" method="GET">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label>Enter the material</label>
+                    <input type="text" class="form-control" name="name" placeholder="Enter the material...">
+                </div>
+                
+                <div class="form-group">
+                    <input type="submit" class="btn btn-success" value="submit">
+                </div>
+            </form>
+        </div>
+
+    <div class="row">
+        <div class="col-md-12">
+                    <thead>
+                        <tr>
+                            {% for k in serializer %}
+                            <th>{{k}}</th>
+                            {% endfor %}
+                        </tr>
+                    </thead>
+                <tbody>
+                    {% for a in material_list %}
+                        <tr>
+                            <td> {{a.date}}</td>
+                            <td> {{a.doc_no}}</td>
+                            <td> {{a.received_from}}</td>
+                            <td> {{a.receipt_no}}</td>
+                            <td> {{a.issue}}</td>
+                            <td> {{a.balance}}</td>
+                            <td> {{a.verification_date}}</td>
+                            <td> {{a.verified_by</td>
+                        </tr>
+                    {% endfor%}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% if status %}
+<script>
+    alert("{{status}}");
+</script>
+{% endif %}
+{% endblock%}

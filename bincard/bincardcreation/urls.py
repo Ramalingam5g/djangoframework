@@ -16,10 +16,18 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from . import views
-#from bincardcreation.views import Myview,materilaserializers
+from bincardcreation import views
+# from bincardcreation.views import MaterialView
+
 
 urlpatterns = [
-    path('',views.bincardtable.as_view()),
-    path('receipt/<int:receipt_no>',views.materilaserializers.as_view()),
-
+    path('post_method',views.post_method),
+    path('',views.display),
+    path('display/',views.display,name="display"),
+    path('edit/<int:receipt_no>', views.edit),  
+    path('update/<int:receipt_no>', views.update),  
+    path('delete/<int:receipt_no>', views.delete), 
+    # path('',views.MaterialView.as_view()),
 ]
+
+

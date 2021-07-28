@@ -1,16 +1,10 @@
 from rest_framework import serializers
-from bincardcreation.models import material
+from bincardcreation.models import Material
 
-class materialserializers(serializers.ModelSerializer):
+class Materialserializers(serializers.ModelSerializer):
 
     class Meta:
-        model = material
+        model = Material
         fields = '__all__'
-        # fields =['date',
-        # 'doc_no',
-        # 'received_from',
-        # 'receipt_no',
-        # 'issue',
-        # 'balance',
-        # 'verification_date',
-        # 'verified_by']
+        
+        
