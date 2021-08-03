@@ -1,16 +1,44 @@
 <head>
   <title>Edit The Record</title>
+  <style>
+    /* body{
+      background-color:rgb(181, 199, 231);
+    } */
+    input{
+      border: 1px solid rgb(7, 7, 7);
+      height: 20px;
+    }
+    label{
+      font-size: 30px;
+    }
+    table {
+      font-family: arial, sans-serif;
+      border-collapse: collapse;
+      width: 40%;
+    }
+    
+    td, th {
+      border: 1px solid #000000;
+      text-align: left;
+      padding: 8px;
+    }
+    
+    tr:nth-child() {
+      background-color: #dddddd;
+    }
+    
+    </style>
 </head>
 <body>
   <center>
     <h1> Update The Record</h1>
     <hr/>
     <form method="POST" action="/update/{{ Material.receipt_no }}">
-       {% csrf_token %}
-    <table border="3">
+      {% csrf_token %}
+    <table class="table table-striped table-bordered table-sm">
       <tr>
         <td>Date</td>
-        <td><input type="date" name="date"value="{{ Material.date }}"/></td>
+        <td><input type="text" name="date"value="{{ Material.date }}"/></td>
       </tr>
       <tr>
         <td>Document Number</td>
@@ -22,7 +50,7 @@
       </tr>
       <tr>
         <td>Receipt Number</td>
-        <td><input type="number" name="receipt_no" value="{{ Material.receipt_no }}"/></td>
+        <td><input type="number" name="receipt_no" value="{{ Material.receipt_no }}"readonly/></td>
       </tr>
       <tr>
         <td>Issue</td>
@@ -34,7 +62,7 @@
       </tr>
       <tr>
         <td>Verification date</td>
-        <td><input type="date" name="verification_date"value="{{ Material.verification_date }}"/></td>
+        <td><input type="text" name="verification_date"value="{{ Material.verification_date }}"/></td>
       </tr>
       <tr>
         <td>Verified by</td>
@@ -43,11 +71,11 @@
     </table>
     <input type="submit" value="update"/> <a href="{% url 'display' %}"> Back to homepage</a>
     {% if messages %}
-    {% for sms in messages %} 
-    <h3 style="color: rgb(32, 143, 240);">{{sms}}</h3>
+    {% for updation in messages %} 
+    <h3 style="color: rgb(32, 143, 240);">{{updation}}</h3>
     {% endfor %}
     {% endif %}
-    
+
     </form>
     
   </center>

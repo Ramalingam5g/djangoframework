@@ -43,29 +43,29 @@
     <tr>  
         <th> Date </th>
         <th> Document Number </th>
+        <th> Material Name</th>
         <th> Received From</th>
-        <th> Receipt Number</th>
+        
         <th> Issue</th>
         <th> Balance</th>
-        <th> Verification Date</th>
         <th> Verified By</th>  
         <th> Action </th>
     </tr>  
     </thead>  
-    <tbody>  
-{% for a in materials %}  
-    <tr>  
-        <td> {{a.date}}</td>
+    <tbody>
+    {% for a in materials %}  
+    <tr id={{a.id}}>  
+        <td> {{a.date}} </td>
         <td> {{a.doc_no}}</td>
+        <td> {{a.material_name }}</td>
         <td> {{a.received_from}}</td>
-        <td> {{a.receipt_no}}</td>
+        
         <td> {{a.issue}}</td>
         <td> {{a.balance}}</td>
-        <td> {{a.verification_date}}</td>
         <td> {{a.verified_by}}</td>  
         <td>  
-            <a href="/edit/{{ a.receipt_no}}"><span class="glyphicon glyphicon-pencil" >Edit</span></a>  
-            <a href="/delete/{{ a.receipt_no }}">Delete</a>  
+            <a ><span class="glyphicon glyphicon-pencil" onclick="edit()">update</span></a>  
+            <a href="/delete/{{ a.id }}">Delete</a>  
         </td>  
     </tr>  
 {% endfor %}  
@@ -76,3 +76,4 @@
 <center><a href="/post_method" class="btn btn-primary">Add New Record</a></center>  
 </body>  
 </html>  
+

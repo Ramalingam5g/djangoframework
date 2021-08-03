@@ -1,6 +1,5 @@
 from django.db import models
 import uuid
-
 Trans_type=(
     ('RF','Recieved from'),
     ("IT","Issued to"),
@@ -19,13 +18,10 @@ class Material(models.Model):
     date=models.DateField()
     doc_no=models.IntegerField(unique=True)
     received_from=models.CharField(max_length=200,null=True,blank=True)
-    # receipt_no=models.IntegerField()
     issue=models.CharField(max_length=200,null=True,blank=True)
     balance=models.IntegerField()
     verification_date=models.DateField()
     verified_by=models.CharField(max_length=100)
-    
-
     
 
 # Create your models here.

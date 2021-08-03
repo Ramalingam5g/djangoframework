@@ -6,65 +6,117 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from django.contrib import messages
-# from bincardcreation.serializers import materialserializers
 from bincardcreation.forms import MaterialForm
 
-
-
-# class MaterialView(APIView):
-
-# def get(self,request):
-#     material_list = material.objects.all()
-#     serializer = materialserializers(material_list, many=True)
-#     return render(request, "material.html", {"serializer":serializer.data})
-
-def post_method(request):  
-    if request.method == "POST":  
-        form = MaterialForm(request.POST)  
-        if form.is_valid():
-            form.save()  
-            return redirect('/display')  
-    else:  
-        form = MaterialForm() 
-        context = {'form':form} 
-    return render(request,'materials.html', context)  
-
+from datetime import datetime
+from django.http import JsonResponse
 def display(request):  
     materials = Material.objects.all()
     context = {'materials':materials} 
-    return render(request,"display.html", context )  
+    return render(request,"display.html", context ) 
 
-def edit(request, receipt_no):  
-    serializer = Material.objects.get(receipt_no=receipt_no) 
-    context = {'Material':serializer} 
-    return render(request,'Edit.html', context )  
-def update(request, receipt_no):  
-    serializer = Material.objects.get(receipt_no=receipt_no)  
-    form = MaterialForm(request.POST, instance = serializer)  
-    if form.is_valid():  
+def post_method(request):
+    import pdb; pdb.set_trace()
+    form = MaterialForm()
+    if request.method == 'POST':
+        form = MaterialForm(request.POST)
+    if form.is_valid():
         form.save()
-    messages.success(request,"Record Update sucessfully...")    
-    return render(request, 'Edit.html', {'Material': serializer})  
-def delete(request, receipt_no):  
-    serializer = Material.objects.get(receipt_no=receipt_no)  
-    serializer.delete()  
-    return redirect("/display")
+        return redirect('/display')
+
+    context = {'form':form}
+    return render(request, 'home.html', context)
+
+def edit(request,id):
+    serializer=Material.objects.get(id=id)
+    return render(request,'Edit.html',{'Material':serializer})
+
+def update(request, id):
+
+	material = Material.objects.get(id=id)
+	form = MaterialForm(instance=material)
+
+	if request.method == 'POST':
+		form = MaterialForm(request.POST, instance=material)
+		if form.is_valid():
+			form.save()
+			return redirect('/display')
+
+	context = {'form':form}
+	return render(request, 'Edit.html', context)
+
+def delete(request, id):
+	order = MaterialForm.objects.get(id=id)
+	order.delete()
+	return redirect('/display')
+
+	
 
 
-    # def get(self,request):
-    #     material_list = material.objects.all()
-    #     serializer = materialserializers(material_list, many=True)
-    #     return render(request, "material.html", {"serializer":serializer.data})
+# def post_method(request):  
+#     if request.method == "POST":  
+#         datas = request.POST.copy()
+#         datas['date'] = datetime.strptime(request.POST['date'], '%m-%d-%Y').strftime('%Y-%m-%d')
+#         datas['verification_date'] = datetime.strptime(request.POST['verification_date'], '%m-%d-%Y').strftime('%Y-%m-%d')
+#         form = MaterialForm(datas)  
+#         if form.is_valid():
+#             form.save()  
+#             return redirect('/display') 
+#         else:
+#             return JsonResponse(form.errors, status=401)
 
-        
-    # def post(self, request, format=None):
-    #     serializer = materialserializers(data=request.data)
-    #     if serializer.is_valid():
-    #         serializer.save()
-    #         return Response(serializer.data, status=status.HTTP_201_CREATED)
-    #     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+#             # return Response(form.errors) 
+#     else:  
+#         form = MaterialForm() 
+#     return render(request, 'materials.html', {'form':form})
+
+# def display(request):  
+#     materials = Material.objects.all()
+#     context = {'materials':materials} 
+#     return render(request,"display.html", context )  
+
+# def edit(request, id): 
+#     import pdb;pdb.set_trace()
+#     serializer = Material.objects.filter(id=id).update(**request.PUT)
+#     context = {'Material':serializer} 
+#     # return render(request,'Edit.html', context )  
+#     materials = Material.objects.all()
+#     context = {'materials':materials} 
+#     return render(request,"display.html", context )  
+
+# def update(request, id):  
+#     serializer = Material.objects.get(id=id)  
+#     datas = request.POST.copy()
+#     datas['date'] = datetime.strptime(request.POST['date'], '%b. %d, %Y').strftime('%Y-%m-%d')
+#     datas['verification_date'] = datetime.strptime(request.POST['verification_date'], '%b. %d, %Y').strftime('%Y-%m-%d')
+#     form = MaterialForm(datas, instance = serializer)  
+#     if form.is_valid():  
+#         form.save()
+#         return redirect('/display')
+#     materials = Material.objects.all()
+#     context = {'materials':materials} 
+#     return render(request,"display.html", context )    
+
+# def delete(request, id):  
+#     serializer = Material.objects.get(id=id)  
+#     serializer.delete()  
+#     return redirect("/display")
+
 
     
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     # def post(self, request, format=None):
     #     material_list = material.objects.filter(receipt_no=request.POST['receipt_no'])

@@ -1,4 +1,4 @@
-"""bincard URL Configuration
+"""mindshareapp URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/3.2/topics/http/urls/
@@ -14,19 +14,11 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
-from . import views
-from bincardcreation import views
-# from bincardcreation.views import MaterialView
+from django.urls import include,path
 
 
 urlpatterns = [
-    path('post_method',views.post_method),
-    path('',views.display),
-    path('display/',views.display,name="display"),
-    # path('edit/<int:receipt_no>', views.edit),  
-    path('update/<int:id>', views.update),  
-    path('delete/<int:id>', views.delete), 
+    path('admin/', admin.site.urls),
+    path('',include('materiallist.urls')),
+
 ]
-
-
