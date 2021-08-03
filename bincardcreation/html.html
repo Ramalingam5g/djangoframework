@@ -1,0 +1,145 @@
+
+<head>  
+    <meta charset="UTF-8">  
+    <title>Material Records</title>  
+     {% load static %}
+     
+     
+        <style>
+        /* body{
+          background-color:rgb(181, 199, 231);
+        } */
+        input{
+          border: 1px solid black;
+          height: 20px;
+        }
+        label{
+          font-size: 30px;
+        }
+        table {
+          font-family: arial, sans-serif;
+          border-collapse: collapse;
+          width: 100%;
+        }
+        
+        td, th {
+          border: 1px solid #000000;
+          text-align: left;
+          padding: 5px;
+        }
+        
+        tr:nth-child() {
+          background-color: #dddddd;
+        }
+        
+        </style>
+        
+     
+</head>  
+<body>  
+<table class="table table-striped table-bordered table-sm">
+    
+    <thead class="thead-dark">  
+    <tr>  
+        <th> Date </th>
+        <th> Document Number </th>
+        <th> Received From</th>
+        <th> Receipt Number</th>
+        <th> Issue</th>
+        <th> Balance</th>
+        <th> Verification Date</th>
+        <th> Verified By</th>  
+        <th> Action </th>
+    </tr>  
+    </thead>  
+    <tbody>
+    {% for a in materials %}  
+    <tr>  
+        <td id='date'+{{a.id}} >{{a.date}}</td>
+        <td id='doc_no'+{{a.id}}> {{a.doc_no}}</td>
+        <td id='received_from'+{{a.id}}> {{a.received_from}}</td>
+        <td id='receipt_no'+{{a.id}}> {{a.receipt_no}}</td>
+        <td id='issue'+{{a.id}}> {{a.issue}}</td>
+        <td id='balance'+{{a.id}}> {{a.balance}}</td>
+        <td id='verification_date'+{{a.id}}> {{a.verification_date}}</td>
+        <td id='verified_by'+{{a.id}}> {{a.verified_by}}</td>  
+        <td>  
+          <td>
+            <input type="button" id="edit_button1" value="Edit" class="edit" onclick="edit_row('1')">
+            <input type="button" id="save_button1" value="Save" style="display:none;" onclick="save_row('1')">
+            <input type="button" value="Delete" class="delete" onclick="delete_row('1')">
+            </td>
+        </td>  
+    </tr>  
+{% endfor %}  
+    </tbody>  
+</table>  
+<br>  
+<br>  
+<center><a href="/post_method" class="btn btn-primary">Add New Record</a></center>  
+</body>  
+</html>  
+
+<script>
+  function edit_row(id)
+{
+ document.getElementById("edit_button"+no).style.display="none";
+ document.getElementById("save_button"+no).style.display="block";
+	
+ var date=document.getElementById("date"+id);
+ var doc_no=document.getElementById("doc_no"+id);
+ var received_from=document.getElementById("received_from"+id);
+ var receipt_no=document.getElementById("receipt_no"+id);
+ var issue=document.getElementById("issue"+id);
+ var balance=document.getElementById("balance"+id);
+ var verification_date=document.getElementById("verification_date"+id);
+ var verified_by=document.getElementById("verified_by"+id);
+
+
+ var date=date.innerHTML;
+ var doc_no=doc_no.innerHTML;
+ var received_from=received_from.innerHTML;
+ var date=date.innerHTML;
+ var doc_no=doc_no.innerHTML;
+ var received_from=received_from.innerHTML;
+ 
+ date.innerHTML="<input type='text' id='date"+id+"' value='"+name_data+"'>";
+ country.innerHTML="<input type='text' id='country_text"+no+"' value='"+country_data+"'>";
+ age.innerHTML="<input type='text' id='age_text"+no+"' value='"+age_data+"'>";
+}
+
+
+function save_row(no)
+  {
+      var name_val=document.getElementById("name_text"+no).value;
+      var country_val=document.getElementById("country_text"+no).value;
+      var age_val=document.getElementById("age_text"+no).value;
+
+      document.getElementById("name_row"+no).innerHTML=name_val;
+      document.getElementById("country_row"+no).innerHTML=country_val;
+      document.getElementById("age_row"+no).innerHTML=age_val;
+
+      document.getElementById("edit_button"+no).style.display="block";
+      document.getElementById("save_button"+no).style.display="none";
+  }
+
+function delete_row(no)
+  {
+     document.getElementById("row"+no+"").outerHTML="";
+  }
+
+function add_row()
+    {
+      var new_name=document.getElementById("new_name").value;
+      var new_country=document.getElementById("new_country").value;
+      var new_age=document.getElementById("new_age").value;
+        
+      var table=document.getElementById("data_table");
+      var table_len=(table.rows.length)-1;
+      var row = table.insertRow(table_len).outerHTML="<tr id='row"+table_len+"'><td id='name_row"+table_len+"'>"+new_name+"</td><td id='country_row"+table_len+"'>"+new_country+"</td><td id='age_row"+table_len+"'>"+new_age+"</td><td><input type='button' id='edit_button"+table_len+"' value='Edit' class='edit' onclick='edit_row("+table_len+")'> <input type='button' id='save_button"+table_len+"' value='Save' class='save' onclick='save_row("+table_len+")'> <input type='button' value='Delete' class='delete' onclick='delete_row("+table_len+")'></td></tr>";
+
+      document.getElementById("new_name").value="";
+      document.getElementById("new_country").value="";
+      document.getElementById("new_age").value="";
+    }
+</script>
