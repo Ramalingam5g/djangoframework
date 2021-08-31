@@ -53,6 +53,7 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'mindshareapp.urls'
 
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -85,7 +86,7 @@ TEMPLATE_DIRS = (
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'bincard',
+        'NAME': 'mindshare',
         'USER': 'root',
         'PASSWORD': 'root',
         'HOST': 'localhost',
