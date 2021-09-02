@@ -9,8 +9,7 @@ urlpatterns = [
     path('main_list/<uuid:id>', views. material_View),
     path('master_page',views.master_Page),
     path('Create_Method',views.Create_Method),
-    # path('',views.display),
-    path('display/',views.display,name="display"),
+    path('transact_list/',views.transact_list,name="transact_list"),
     path('update/<str:id>', views.Update_Method)  
    
 ]

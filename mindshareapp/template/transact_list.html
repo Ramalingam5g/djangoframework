@@ -10,14 +10,16 @@ border-collapse:collapse;   }
  
 td {                            /* removed the border from the table data rows  */
 text-align: center;     
-width: 14em;                    
-padding: 8px;;       }       
+width: 144em;                    
+padding: 8px;
+font-size: 1.3rem;    }       
  
 th {                              /* removed the border from the table heading row  */
 text-align: center;                 
 padding: 8px;
 background-color: lightblue;       /* added a red background color to the heading cells  */
-color: white;       }                 /* added a white font color to the heading text */
+color: white; 
+font-size: 1.5rem;      }                 /* added a white font color to the heading text */
  
 tr {    
 height: 1em;    }
@@ -57,9 +59,9 @@ font-weight: bolder; font-size: 200%;"><center> Transaction Inward Ledger</cente
     <thead>  
     <tr>
         <th > Date </th>
-        <th> Document Number </th>
+        <th scope="col"> Document Number </th>
         <th> Balance</th>
-        <th> Verification Date</th>
+        <th> Verified_By</th>
         <th> Action </th> 
     </tr>  
     </thead>  
@@ -70,7 +72,7 @@ font-weight: bolder; font-size: 200%;"><center> Transaction Inward Ledger</cente
         <td> {{form_transact.Date}} </td>
         <td> {{form_transact.Document_Number}}</td>
         <td> {{ form_transact.Balance}}</td>
-        <td> {{ form_transact.Verification_Date }} </td>
+        <td> {{ form_transact.Verified_By }} </td>
         <td><button><a href="/update/{{form_transact.id}}"><span class="button" >Update</span></a></button></td>  
        
     </tr>  
